@@ -73,9 +73,9 @@ jobs:
             dotnet tool install MonoPack --create-manifest-if-needed
       shell: bash
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore GreedyKid_Desktop/GreedyKid_Desktop/GreedyKid_Desktop.csproj
     - name: Restore tools
-      run: dotnet tool restore
+      run: dotnet tool restore GreedyKid_Desktop/GreedyKid_Desktop/GreedyKid_Desktop.csproj
     - name: Delete ./${{ matrix.artifact }}
       run: rm -Rf ./${{ matrix.artifact }}
       shell: bash
