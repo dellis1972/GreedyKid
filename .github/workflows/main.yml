@@ -70,7 +70,7 @@ jobs:
       #https://dl.winehq.org/wine-builds/macosx/pool/portable-winehq-stable-5.0-osx64.tar.gz
     - name: Install MonoPack
       run: |
-            dotnet tool install MonoPack
+            dotnet tool install MonoPack --create-manifest-if-needed
       shell: bash
     - name: Restore dependencies
       run: dotnet restore
