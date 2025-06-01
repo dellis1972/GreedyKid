@@ -36,9 +36,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Delete ./${{ matrix.wineprefix }}
-      if: runner.os != 'Windows'
-      run: rm -Rf ./${{ matrix.wineprefix }}
     - name: Setup for MonoGame
       uses: infinitespace-studios/monogame-actions@v1
     - name: Install MonoPack
