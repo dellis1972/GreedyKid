@@ -38,6 +38,10 @@ jobs:
         dotnet-version: 8.0.x
     - name: Setup for MonoGame
       uses: infinitespace-studios/monogame-actions/install-wine@v1.0
+    - name: Setup Git LFS
+      run: |
+        git lfs install
+        git lfs pull
     - name: Install MonoPack
       run: |
             dotnet tool install MonoPack --create-manifest-if-needed
