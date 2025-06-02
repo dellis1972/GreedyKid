@@ -42,10 +42,6 @@ jobs:
       run: |
         git lfs install
         git lfs pull
-    - name: Install MonoPack
-      run: |
-            dotnet tool install MonoPack --create-manifest-if-needed
-      shell: bash
     - name: Restore dependencies
       run: dotnet restore
       working-directory: GreedyKid_Desktop/GreedyKid_Desktop
@@ -64,16 +60,11 @@ jobs:
     - name: Build
       run: |
         echo $DYLD_LIBRARY_PATH
-        dotnet build GreedyKid_Desktop/GreedyKid_Desktop/GreedyKid_Desktop.csproj -c Release -v:diag -tl:off
+        dotnet publish GreedyKid_Desktop/GreedyKid_Desktop/GreedyKid_Desktop.csproj -c Release -v:diag -tl:off
       shell: bash
       env:
         MGFXC_WINE_PATH: ${{ env.WINEPREFIX }}
         DYLD_LIBRARY_PATH: /usr/lib:/usr/local/lib:/opt/homebrew/lib:/usr/local/bin:$DYLD_LIBRARY_PATH
-    - name: Package
-      run: dotnet monopack -e GreedyKid -p GreedyKid_Desktop/GreedyKid_Desktop/GreedyKid_Desktop.csproj -z -o ./${{ matrix.artifact }} ${{ matrix.rids }} -i GreedyKid_Desktop/GreedyKid_Desktop/Info.plist -c GreedyKid_Desktop/GreedyKid_Desktop/GreedyKid.icns -v
-      shell: bash
-      env:
-        MGFXC_WINE_PATH: ${{ matrix.wineprefix }}
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
